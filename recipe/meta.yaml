@@ -25,19 +25,20 @@ build:
 
 requirements:
 
-  build:
+  host:
     - python
     - setuptools
-    - numpy 1.9.*  # [py27]
-    - numpy 1.9.*  # [py35]
-    - numpy 1.11.*  # [py36]
+    - numpy
+
+  build:
+    - jinja2
+    - cython
+    - {{ compiler('c') }}
 
   run:
     - python
-    - numpy >=1.9  # [py27]
-    - numpy >=1.9  # [py35]
-    - numpy >=1.11  # [py36]
     - pytest
+    - {{ pin_compatible('numpy') }}
 
 test:
   commands:
