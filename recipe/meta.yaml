@@ -26,6 +26,9 @@ build:
 requirements:
 
   build:
+    - {{ compiler('c') }}
+
+  host:
     - python
     - setuptools
     - numpy 1.10.*  # [py35]
@@ -33,9 +36,9 @@ requirements:
 
   run:
     - python
-    - numpy >=1.10  # [py35]
-    - numpy >=1.11  # [py36]
+    - pytest
     - pytest-astropy
+    - {{ pin_compatible('numpy') }}
 
 test:
   commands:
