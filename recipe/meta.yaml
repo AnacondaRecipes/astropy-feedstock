@@ -34,8 +34,7 @@ requirements:
     - numpy 1.16.*  # [py>=37]
   run:
     - python
-    - numpy >=1.16  # [py36]
-    - numpy >=1.16  # [py>=37]
+    - {{ pin_compatible('numpy') }}
 
 
 test:
