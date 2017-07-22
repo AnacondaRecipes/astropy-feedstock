@@ -25,21 +25,20 @@ build:
 requirements:
 
   build:
+    - {{ compiler('c') }}
+
+  host:
     - python
     - setuptools
-    - numpy 1.9.*  # [py27]
-    - numpy 1.9.*  # [py35]
-    - numpy 1.11.*  # [py36]
+    - numpy
+    - cython
 
   run:
     - python
-    - numpy >=1.9  # [py27]
-    - numpy >=1.9  # [py35]
-    - numpy >=1.11  # [py36]
-
     # Astropy 2.x is not compatible with pytest 3.8 and later
     # https://github.com/astropy/astropy/issues/8177
     - pytest <3.7
+    - {{ pin_compatible('numpy') }}
 
 test:
   commands:
