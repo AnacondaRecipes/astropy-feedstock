@@ -55,6 +55,7 @@ test:
 about:
   home: http://www.astropy.org/
   license: BSD
+  license_file: LICENSE.rst
   summary: Community-developed Python Library for Astronomy
   description: |
     The Astropy Project is a community effort to develop a single package for
@@ -62,6 +63,7 @@ about:
     needed for performing astronomy and astrophysics research with Python.
   doc_url: http://docs.astropy.org/en/stable/
   dev_url: https://github.com/astropy/astropy
+  doc_source_url: https://github.com/astropy/astropy/blob/master/docs/index.rst
 
 extra:
   recipe-maintainers:
