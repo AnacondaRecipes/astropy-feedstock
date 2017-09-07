@@ -25,20 +25,20 @@ build:
 
 requirements:
 
+  build:
+    - {{ compiler('c') }}
+    - jinja2
+    - cython
+
   host:
     - python
     - setuptools
-    - numpy
-
-  build:
-    - jinja2
-    - cython
-    - {{ compiler('c') }}
+    - numpy 1.9.*
 
   run:
     - python
     - pytest
-    - {{ pin_compatible('numpy') }}
+    - numpy >=1.9.0
 
 test:
   commands:
