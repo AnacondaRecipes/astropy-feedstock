@@ -24,24 +24,24 @@ build:
     - samp_hub = astropy.samp.hub_script:hub_script
     - volint = astropy.io.votable.volint:main
     - wcslint = astropy.wcs.wcslint:main
-  number: 2
+  number: 3
 
 requirements:
+
+  build:
+    - {{ compiler('c') }}
+    - jinja2
+    - cython
 
   host:
     - python
     - setuptools
-    - numpy
-
-  build:
-    - jinja2
-    - cython
-    - {{ compiler('c') }}
+    - numpy 1.9.*
 
   run:
     - python
     - pytest
-    - {{ pin_compatible('numpy') }}
+    - numpy >=1.9.0
 
 test:
   commands:
