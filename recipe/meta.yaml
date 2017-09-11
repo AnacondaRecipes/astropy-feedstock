@@ -1,4 +1,4 @@
-{% set version = "2.0.1" %}
+{% set version = "2.0.2" %}
 
 package:
   name: astropy
@@ -7,11 +7,7 @@ package:
 source:
   fn: astropy-{{version}}.tar.gz
   url: https://pypi.io/packages/source/a/astropy/astropy-{{version}}.tar.gz
-  md5: f7bc6ff800575705d8ad0214a89ba489
-  patches:
-    # invalid compressed data trips up some virus scanners.  This patch can be removed in astropy 2.0.2
-    - create_invalid_compressed_data_on_fly.patch
-
+  sha256: 61f9cb2e4964946699bbb1ecdcc633d7de00bc8726fdf5cb86e91e6972743611
 
 build:
   detect_binary_files_with_prefix: False

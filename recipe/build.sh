@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [[ `uname` == Linux ]]; then
-    export CFLAGS="$CFLAGS -std=c99"
+if [[ ${HOST} =~ .*linux.* ]]; then
+    export CFLAGS="${CFLAGS} -std=c99"
 fi
 
 $PYTHON setup.py install --offline --old-and-unmanageable
