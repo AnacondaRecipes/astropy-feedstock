@@ -16,7 +16,7 @@ import astropy.wcs._wcs
 # issues because they rely on C extensions and bundled libraries
 
 from astropy import test
-test(package='io.ascii')
+#test(package='io.ascii')  # takes >1.5 hours to run
 test(package='time')
 test(package='wcs')
 test(package='convolution')
