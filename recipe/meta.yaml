@@ -35,11 +35,12 @@ requirements:
     - numpy 1.14.*  # [py>=37]
   run:
     - python
-    - pytest-astropy
     - {{ pin_compatible('numpy') }}
 
 
 test:
+  requires:
+    - pytest-astropy
   commands:
     - fits2bitmap --help
     - fitscheck --help
