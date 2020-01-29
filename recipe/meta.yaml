@@ -32,7 +32,8 @@ requirements:
     - pip
     - setuptools
     - numpy 1.16.*  # [py36]
-    - numpy 1.16.*  # [py>=37]
+    - numpy 1.16.*  # [py==37]
+    - numpy 1.17.*  # [py==38]
   run:
     - python
     - pytest-astropy
