@@ -30,11 +30,11 @@ requirements:
     - python
     - pip
     - setuptools
+    - setuptools_scm
     - numpy 1.16.*  # [py36]
     - numpy 1.16.*  # [py>=37]
   run:
     - python
-    - pytest-astropy
     - {{ pin_compatible('numpy') }}
 
 
