@@ -25,19 +25,24 @@ build:
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cython                                 # [build_platform != target_platform]
+    - numpy >=1.16                           # [build_platform != target_platform]
     - {{ compiler('c') }}
   host:
     - python
     - pip
     - setuptools
-    - jinja2 2.10.3
-    - cython 0.29.14
-    - numpy 1.16.*  # [py36]
-    - numpy 1.16.*  # [py>=37]
+    - jinja2
+    - cython
+    - setuptools_scm
+    - extension-helpers
+    - numpy >=1.16
   run:
     - python
-    - setuptools
-    - {{ pin_compatible('numpy') }}
+    - {{ pin_compatible("numpy") }}
+    - numpy >=1.16
+    - pyerfa
 
 
 test:
