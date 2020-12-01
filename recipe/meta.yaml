@@ -21,6 +21,7 @@ build:
     - volint = astropy.io.votable.volint:main
     - wcslint = astropy.wcs.wcslint:main
   number: 0
+  script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [py27]
 
 requirements:
@@ -43,7 +44,6 @@ requirements:
     - {{ pin_compatible("numpy") }}
     - numpy >=1.16
     - pyerfa
-
 
 test:
   requires:
