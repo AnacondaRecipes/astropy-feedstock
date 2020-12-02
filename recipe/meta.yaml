@@ -48,6 +48,7 @@ requirements:
 test:
   requires:
     - pytest-astropy
+    - setuptools
   commands:
     - fits2bitmap --help
     - fitscheck --help
