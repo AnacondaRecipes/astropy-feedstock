@@ -28,17 +28,18 @@ requirements:
   build:
     - {{ compiler('c') }}
   host:
-    - python
+    - python >=3.7
     - pip
     - setuptools
     - jinja2
     - cython
     - setuptools_scm
     - extension-helpers
-    - numpy-devel {{ numpy }}
+    - numpy >=1.17
   run:
     - python
     - pyerfa
+    - numpy >=1.17
 
 test:
   requires:
