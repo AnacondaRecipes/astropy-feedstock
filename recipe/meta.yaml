@@ -22,13 +22,13 @@ build:
     - wcslint = astropy.wcs.wcslint:main
   number: 1
   script: {{ PYTHON }} -m pip install . -vv
-  skip: true  # [py27]
+  skip: true  # [py<37]
 
 requirements:
   build:
     - {{ compiler('c') }}
   host:
-    - python >=3.7
+    - python 
     - pip
     - setuptools
     - jinja2
@@ -36,10 +36,16 @@ requirements:
     - setuptools_scm
     - extension-helpers
     - numpy >=1.17
+    - scipy >=1.1
+    - pyyaml >=3.13
+    - matplotlib >=3.0
   run:
     - python
     - pyerfa
     - numpy >=1.17
+    - scipy >=1.1
+    - pyyaml >=3.13
+    - matplotlib >=3.0
 
 test:
   requires:
