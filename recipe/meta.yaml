@@ -61,7 +61,7 @@ test:
     - samp_hub --help
     - volint --help
     - wcslint --help
-    - pip check
+    # - pip check
   imports:
     - astropy
 
