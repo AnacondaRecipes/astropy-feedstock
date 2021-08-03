@@ -41,7 +41,7 @@ requirements:
     - matplotlib >=3.0
   run:
     - python
-    - pyerfa
+    - pyerfa >=2.0
     - numpy >=1.17
     - scipy >=1.1
     - pyyaml >=3.13
@@ -49,8 +49,9 @@ requirements:
 
 test:
   requires:
-    - pytest-astropy
+    - pytest-astropy >=0.8
     - setuptools
+    - pip
   commands:
     - fits2bitmap --help
     - fitscheck --help
@@ -60,6 +61,7 @@ test:
     - samp_hub --help
     - volint --help
     - wcslint --help
+    - pip check
   imports:
     - astropy
 
@@ -67,6 +69,7 @@ about:
   home: http://www.astropy.org/
   license: BSD-3-Clause
   license_file: LICENSE.rst
+  license_family: MIT
   summary: Community-developed Python Library for Astronomy
   description: |
     The Astropy Project is a community effort to develop a single package for
