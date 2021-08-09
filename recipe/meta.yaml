@@ -40,7 +40,7 @@ requirements:
     - numpy
     - scipy >=1.2
     - pyyaml >=3.13
-    - matplotlib >=3.0
+    - matplotlib >=3.0,!=3.4.0
   run:
     - python
     - pyerfa >=2.0
