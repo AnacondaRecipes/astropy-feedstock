@@ -32,22 +32,22 @@ requirements:
     - python 
     - pip
     - setuptools
-    - jinja2
-    - cython
+    - jinja2 ==2.10.3
+    - cython ==0.29.22
     - setuptools_scm
     - wheel
     - extension-helpers
     - numpy
-    - scipy >=1.1
+    - scipy >=1.2
     - pyyaml >=3.13
     - matplotlib >=3.0
   run:
     - python
     - pyerfa >=2.0
     - {{ pin_compatible("numpy") }}
-    - scipy >=1.1
+    - scipy >=1.2
     - pyyaml >=3.13
-    - matplotlib >=3.0
+    - matplotlib >=3.0,!=3.4.0
     - importlib-metadata  # [py==37]
 
 test:
@@ -63,6 +63,7 @@ test:
     - samp_hub --help
     - volint --help
     - wcslint --help
+    - showtable --help
   imports:
     - astropy
 
