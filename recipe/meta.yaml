@@ -54,7 +54,9 @@ test:
   requires:
     - pytest-astropy >=0.8
     - setuptools
+    - pip
   commands:
+    - pip check
     - fits2bitmap --help
     - fitscheck --help
     - fitsdiff --help
