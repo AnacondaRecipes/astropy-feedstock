@@ -21,7 +21,7 @@ build:
     - showtable = astropy.table.scripts.showtable:main
     - volint = astropy.io.votable.volint:main
     - wcslint = astropy.wcs.wcslint:main
-  number: 1
+  number: 0
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [py<37]
 
