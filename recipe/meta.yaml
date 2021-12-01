@@ -23,36 +23,36 @@ build:
     - wcslint = astropy.wcs.wcslint:main
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
-  skip: true  # [py<37]
+  skip: true  # [py<38]
 
 requirements:
   build:
     - {{ compiler('c') }}
   host:
     - python 
+    - cython ==0.29.22
+    - extension-helpers
+    - jinja2 ==2.10.3
+    - numpy
     - pip
     - setuptools
-    - jinja2 ==2.10.3
-    - cython ==0.29.22
-    - setuptools_scm
+    - setuptools_scm >=6.2
     - wheel
-    - extension-helpers
-    - numpy
-    - scipy >=1.2
-    - pyyaml >=3.13
-    - matplotlib >=3.0,!=3.4.0
   run:
     - python
-    - pyerfa >=1.7.3
     - {{ pin_compatible("numpy") }}
-    - scipy >=1.2
+    - importlib-metadata
+    - packaging >=19.0
+    - pyerfa >=2.0
     - pyyaml >=3.13
-    - matplotlib >=3.0,!=3.4.0
-    - importlib-metadata  # [py==37]
+    # Recommended dependencies
+    - matplotlib >=3.1,!=3.4.0
+    - scipy >=1.3
 
 test:
   requires:
-    - pytest-astropy >=0.8
+    - pytest-astropy >=0.9
+    - pytest-xdist
     - setuptools
     - pip
   commands:
