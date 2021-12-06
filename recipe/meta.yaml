@@ -30,7 +30,8 @@ requirements:
     - {{ compiler('c') }}
   host:
     - python 
-    - cython ==0.29.22
+    - cython ==0.29.22  # [not arm64]
+    - cython >=0.29.22  # [linux and arm64]
     - extension-helpers
     - jinja2 ==2.10.3
     - numpy
