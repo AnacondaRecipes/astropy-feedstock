@@ -51,10 +51,8 @@ requirements:
 
 test:
   requires:
-    - cython
     - pytest-astropy >=0.9
     - pytest-xdist
-    - setuptools
     - pip
   commands:
     - pip check
