@@ -30,10 +30,9 @@ requirements:
     - {{ compiler('c') }}
   host:
     - python 
-    - cython ==0.29.22  # [not arm64]
-    - cython >=0.29.22  # [linux and arm64]
+    - cython >=0.29.22
     - extension-helpers
-    - jinja2 ==2.10.3
+    - jinja2 >=2.10.3,<3.0.0
     - numpy
     - pip
     - setuptools
@@ -52,8 +51,12 @@ requirements:
 
 test:
   requires:
+    - cython
+    - h5py
+    - pandas
     - pytest-astropy >=0.9
     - pytest-xdist
+    - scikit-image
     - setuptools
     - pip
   commands:
