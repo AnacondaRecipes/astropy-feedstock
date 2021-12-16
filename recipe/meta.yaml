@@ -22,6 +22,7 @@ build:
     - volint = astropy.io.votable.volint:main
     - wcslint = astropy.wcs.wcslint:main
   number: 0
+  # trigger: 1
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [py<38]
 
