@@ -28,6 +28,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - pkg-config  # [osx and x86_64]
   host:
     - python 
     - cython >=0.29.22
@@ -41,8 +42,7 @@ requirements:
     - wheel
   run:
     - python
-    - {{ pin_compatible("numpy") }} # [not (osx and x86_64)]
-    - numpy >=1.19  # [(osx and x86_64) and py==39]
+    - {{ pin_compatible("numpy") }}
     - importlib-metadata
     - packaging >=19.0
     - pyerfa >=2.0
