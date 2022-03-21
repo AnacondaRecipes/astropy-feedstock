@@ -28,7 +28,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
-    - pkg-config  # [osx and x86_64]
+    - pkg-config
   host:
     - python 
     - cython >=0.29.22
