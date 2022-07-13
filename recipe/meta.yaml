@@ -14,7 +14,6 @@ build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [py<38]
-  detect_binary_files_with_prefix: false
   entry_points:
     - fits2bitmap = astropy.visualization.scripts.fits2bitmap:main
     - fitscheck = astropy.io.fits.scripts.fitscheck:main
