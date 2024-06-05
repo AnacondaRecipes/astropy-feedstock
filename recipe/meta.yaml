@@ -41,15 +41,15 @@ requirements:
   run:
     - python
     - {{ pin_compatible("numpy") }}
-    - packaging >=19.0
-    - pyerfa >=2.0
+    - pyerfa >=2.0.1.1
+    - astropy-iers-data >=0.2024.4.29.0.28.48
     - pyyaml >=3.13
-    # Recommended dependencies are disabled https://github.com/astropy/astropy/blob/d1e122dd996d885f742a33d75d38529307294baf/setup.cfg#L64
-    #- matplotlib >=3.3,!=3.4.0,!=3.5.2
-    #- scipy >=1.5
+    - packaging >=19.0
+    - matplotlib-base >=3.3,!=3.4.0,!=3.5.2
+    - scipy >=1.8
 
 test:
-  # to satisfy the anaconda-linter python imports moved into run_test.py 
+  # to satisfy the anaconda-linter python imports moved into run_test.py
   requires:
     - pytest >=7.0,<8
     - pytest-astropy >=0.10
