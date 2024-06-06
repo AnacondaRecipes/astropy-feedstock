@@ -31,9 +31,10 @@ requirements:
     - pkg-config
   host:
     - python
-    - cython 3.0.0
-    - extension-helpers
-    - numpy {{ numpy }}
+    - cython >=3.0.0,<3.1.0
+    - extension-helpers >=1,<2
+    - numpy 1.23 # [py==310]
+    - numpy {{ numpy }} # [py>=311]
     - pip
     - setuptools
     - setuptools_scm
@@ -45,6 +46,7 @@ requirements:
     - astropy-iers-data >=0.2024.4.29.0.28.48
     - pyyaml >=3.13
     - packaging >=19.0
+  run_constrained:
     - matplotlib-base >=3.3,!=3.4.0,!=3.5.2
     - scipy >=1.8
 
