@@ -1,3 +1,4 @@
 channels:
-  - https://staging.continuum.io/prefect/fs/pyerfa-feedstock/pr4/b77f2d4
+  - https://staging.continuum.io/prefect/fs/pyerfa-feedstock/pr4/16073f5
   - https://staging.continuum.io/prefect/fs/astropy-iers-data-feedstock/pr1/d6a214b
+  - https://staging.continuum.io/prefect/fs/extension-helpers-feedstock/pr2/2da16b7
