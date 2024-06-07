@@ -1,5 +1,5 @@
 {% set name = "astropy" %}
-{% set version = "5.3.4" %}
+{% set version = "6.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: d490f7e2faac2ccc01c9244202d629154259af8a979104ced89dc4ace4e6f1d8
+  sha256: 6c3b915f10b1576190730ddce45f6245f9927dda3de6e3f692db45779708950f
 
 
 build:
   number: 0
-  skip: true  # [py<39]
+  skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - fits2bitmap = astropy.visualization.scripts.fits2bitmap:main
@@ -31,9 +31,10 @@ requirements:
     - pkg-config
   host:
     - python
-    - cython 0.29
-    - extension-helpers
-    - numpy {{ numpy }}
+    - cython >=3.0.0,<3.1.0
+    - extension-helpers >=1,<2
+    - numpy 1.23 # [py==310]
+    - numpy {{ numpy }} # [py>=311]
     - pip
     - setuptools
     - setuptools_scm
@@ -41,15 +42,16 @@ requirements:
   run:
     - python
     - {{ pin_compatible("numpy") }}
-    - packaging >=19.0
-    - pyerfa >=2.0
+    - pyerfa >=2.0.1.1
+    - astropy-iers-data >=0.2024.4.29.0.28.48
     - pyyaml >=3.13
-    # Recommended dependencies are disabled https://github.com/astropy/astropy/blob/d1e122dd996d885f742a33d75d38529307294baf/setup.cfg#L64
-    #- matplotlib >=3.3,!=3.4.0,!=3.5.2
-    #- scipy >=1.5
+    - packaging >=19.0
+  run_constrained:
+    - matplotlib-base >=3.3,!=3.4.0,!=3.5.2
+    - scipy >=1.8
 
 test:
-  # to satisfy the anaconda-linter python imports moved into run_test.py 
+  # to satisfy the anaconda-linter python imports moved into run_test.py
   requires:
     - pytest >=7.0,<8
     - pytest-astropy >=0.10
