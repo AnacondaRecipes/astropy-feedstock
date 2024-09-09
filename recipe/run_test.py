@@ -1,4 +1,4 @@
-# import platform
+import platform
 
 import astropy.cosmology.flrw.scalar_inv_efuncs
 import astropy.io.ascii.cparser
@@ -21,17 +21,17 @@ from astropy import test
 # They take more than two hours to run on some platforms!
 # test(package='io.ascii')
 
-# if ((platform.machine() == 'aarch64') and
-#     (platform.python_implementation().lower() != 'cpython')):
-#     print('WARNING: Skipping tests on aarch64/PyPy because they take too long')
+if ((platform.machine() == 'aarch64') and
+    (platform.python_implementation().lower() != 'cpython')):
+    print('WARNING: Skipping tests on aarch64/PyPy because they take too long')
 
-# else:
-test(package='time')
-test(package='wcs')
-test(package='convolution')
-test(package='table')
-test(package='timeseries')
-test(package='uncertainty')
-test(package='units')
-test(package='utils')
-test(package='visualization')
+else:
+    test(package='time')
+    test(package='wcs')
+    test(package='convolution')
+    test(package='table')
+    test(package='timeseries')
+    test(package='uncertainty')
+    test(package='units')
+    test(package='utils')
+    test(package='visualization')
