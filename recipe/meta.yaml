@@ -33,22 +33,21 @@ requirements:
     - python
     - cython >=3.0.0,<3.1.0
     - extension-helpers >=1,<2
-    - numpy 1.23 # [py==310]
-    - numpy {{ numpy }} # [py>=311]
+    - numpy >=2.0.0
     - pip
     - setuptools
     - setuptools_scm
     - wheel
   run:
     - python
-    - {{ pin_compatible("numpy") }}
+    - numpy >=1.23
     - pyerfa >=2.0.1.1
     - astropy-iers-data >=0.2024.7.29.0.32.7
     - pyyaml >=3.13
     - packaging >=19.0
-  run_constrained:
     - matplotlib-base >=3.3,!=3.4.0,!=3.5.2
     - scipy >=1.8
+  run_constrained:
 
 test:
   # to satisfy the anaconda-linter python imports moved into run_test.py
