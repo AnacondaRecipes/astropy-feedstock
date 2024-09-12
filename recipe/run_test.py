@@ -1,6 +1,5 @@
 import platform
 
-# import astropy._compiler
 import astropy.cosmology.flrw.scalar_inv_efuncs
 import astropy.io.ascii.cparser
 import astropy.io.votable.tablewriter
@@ -30,3 +29,9 @@ else:
     test(package='time')
     test(package='wcs')
     test(package='convolution')
+    test(package='table')
+    test(package='timeseries')
+    test(package='uncertainty')
+    test(package='units')
+    test(package='utils')
+    test(package='visualization')
