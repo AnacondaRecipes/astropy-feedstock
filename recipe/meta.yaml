@@ -53,7 +53,9 @@ requirements:
     - asdf-astropy >=0.3
     - ipython >=4.2
     - pytest >=7.0
-    - fsspec[http] >=2023.4.0
+    - fsspec >=2023.4.0
+    # Requests needed for fsspec[http]
+    - requests
     - s3fs >=2023.4.0
 
 test:
