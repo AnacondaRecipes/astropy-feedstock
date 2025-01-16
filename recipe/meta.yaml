@@ -40,18 +40,18 @@ requirements:
     - wheel
   run:
     - python
-    - numpy >=1.23
+    - numpy >=1.23.2
     - pyerfa >=2.0.1.1
-    - astropy-iers-data >=0.2024.7.29.0.32.7
-    - pyyaml >=3.13
-    - packaging >=19.0
-    - matplotlib-base >=3.3,!=3.4.0,!=3.5.2
-    - scipy >=1.8
+    - astropy-iers-data >=0.2024.10.28.0.34.7
+    - pyyaml >=6.0.0
+    - packaging >=22.0.0
+    - matplotlib-base >=3.6.0
+    - scipy >=1.9.2
   run_constrained:
     - typing_extensions >=4.0.0
     - pyarrow >=7.0.0
     - asdf-astropy >=0.3
-    - ipython >=4.2
+    - ipython >=8.0.0
     - pytest >=7.0
     - fsspec >=2023.4.0
     # Requests needed for fsspec[http]
