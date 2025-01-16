@@ -48,8 +48,7 @@ requirements:
     - matplotlib-base >=3.6.0
     - scipy >=1.9.2
   run_constrained:
-    - typing_extensions >=4.0.0
-    - pyarrow >=7.0.0
+    - pyarrow >=10.0.1
     - asdf-astropy >=0.3
     - ipython >=8.0.0
     - pytest >=7.0
