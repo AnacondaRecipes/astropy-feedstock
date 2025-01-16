@@ -60,9 +60,9 @@ requirements:
 test:
   # to satisfy the anaconda-linter python imports moved into run_test.py
   requires:
-    - pytest >=7.0,<8
+    - pytest >=7.3.0
     - pytest-astropy >=0.10
-    - pytest-xdist
+    - pytest-xdist >=2.5.0
     - pip
   commands:
     - pip check
