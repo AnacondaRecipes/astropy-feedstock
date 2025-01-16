@@ -1,2 +1,2 @@
 channels:
-  - /prefect/fs/astropy-iers-data-feedstock/pr3/3897050
+  - https://staging.continuum.io/prefect/fs/astropy-iers-data-feedstock/pr3/3897050
