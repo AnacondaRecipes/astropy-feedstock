@@ -73,9 +73,8 @@ test:
   source_files:
     - astropy/tests/
   requires:
-    - pytest >=7.3.0
-    - pytest-astropy >=0.10
-    - pytest-xdist >=2.5.0
+    - pytest
+    - pytest-astropy
     - pip
   commands:
     - pip check
