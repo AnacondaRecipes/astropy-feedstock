@@ -5,4 +5,4 @@ channels:
   - https://staging.continuum.io/prefect/fs/astropy-iers-data-feedstock/pr3/fa63d21
   - https://staging.continuum.io/prefect/fs/pyerfa-feedstock/pr5/f93eda3
   - https://staging.continuum.io/prefect/fs/pytest-astropy-feedstock/pr5/c80b4ef
-  -   - https://staging.continuum.io/prefect/fs/pytest-arraydiff-feedstock/pr3/5462b14
+  - https://staging.continuum.io/prefect/fs/pytest-arraydiff-feedstock/pr3/5462b14
