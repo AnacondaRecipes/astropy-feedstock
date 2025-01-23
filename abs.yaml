@@ -3,3 +3,4 @@ build_env_vars:
 
 channels:
   - https://staging.continuum.io/prefect/fs/astropy-iers-data-feedstock/pr3/fa63d21
+  - https://staging.continuum.io/prefect/fs/pyerfa-feedstock/pr5/f93eda3
