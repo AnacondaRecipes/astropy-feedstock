@@ -4,5 +4,9 @@ build_env_vars:
 channels:
   - https://staging.continuum.io/prefect/fs/astropy-iers-data-feedstock/pr3/fa63d21
   - https://staging.continuum.io/prefect/fs/pyerfa-feedstock/pr5/f93eda3
-  - https://staging.continuum.io/prefect/fs/pytest-astropy-feedstock/pr5/c80b4ef
-  - https://staging.continuum.io/prefect/fs/pytest-arraydiff-feedstock/pr3/5462b14
+  - https://staging.continuum.io/prefect/fs/pytest-astropy-feedstock/pr5/cea5642
+  - https://staging.continuum.io/prefect/fs/pytest-arraydiff-feedstock/pr3/cd842ea
+  - https://staging.continuum.io/prefect/fs/pytest-astropy-header-feedstock/pr3/0abff91
+  - https://staging.continuum.io/prefect/fs/pytest-doctestplus-feedstock/pr8/695fc0b
+  - https://staging.continuum.io/prefect/fs/pytest-filter-subpackage-feedstock/pr1/85e8265
+  - https://staging.continuum.io/prefect/fs/pytest-remotedata-feedstock/pr2/a56c162
