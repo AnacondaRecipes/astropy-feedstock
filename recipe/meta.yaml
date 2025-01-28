@@ -40,7 +40,7 @@ requirements:
     - wheel
   run:
     - python
-    - numpy >=1.24  # from dask(array)
+    - numpy >=1.23.2
     - pyerfa >=2.0.1.1
     - astropy-iers-data >=0.2024.10.28.0.34.7
     - pyyaml >=6.0.0
