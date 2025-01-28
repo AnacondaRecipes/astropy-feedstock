@@ -1,5 +1,5 @@
 {% set name = "astropy" %}
-{% set version = "6.1.3" %}
+{% set version = "7.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 9ac834cdedc1f6b5ce6f941f7bfbbfc58fca861eb172bcf72dd90aff8f750970
+  sha256: e92d7c9fee86eb3df8714e5dd41bbf9f163d343e1a183d95bf6bd09e4313c940
 
 
 build:
   number: 0
-  skip: true  # [py<310]
+  skip: true  # [py<311]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - fits2bitmap = astropy.visualization.scripts.fits2bitmap:main
@@ -40,30 +40,42 @@ requirements:
     - wheel
   run:
     - python
-    - numpy >=1.23
+    - numpy >=1.23.2
     - pyerfa >=2.0.1.1
-    - astropy-iers-data >=0.2024.7.29.0.32.7
-    - pyyaml >=3.13
-    - packaging >=19.0
-    - matplotlib-base >=3.3,!=3.4.0,!=3.5.2
-    - scipy >=1.8
+    - astropy-iers-data >=0.2024.10.28.0.34.7
+    - pyyaml >=6.0.0
+    - packaging >=22.0.0
+    - matplotlib-base >=3.6.0
+    - scipy >=1.9.2
   run_constrained:
-    - typing_extensions >=4.0.0
-    - pyarrow >=7.0.0
+    - certifi >=2022.6.15.1
+    - dask >=2022.5.1
+    - h5py >=3.8.0
+    - pyarrow >=10.0.1
+    - beautifulsoup4 >=4.9.3
+    - html5lib >=1.1
+    - bleach >=3.2.1
+    - pandas >=2.0
+    - sortedcontainers >=1.5.7
+    - pytz >=2016.10
+    - jplephem >=2.6
+    - mpmath >=1.2.1
+    - asdf >=2.8.3
     - asdf-astropy >=0.3
-    - ipython >=4.2
-    - pytest >=7.0
+    - bottleneck >=1.3.3
     - fsspec >=2023.4.0
-    # Requests needed for fsspec[http]
-    - requests
+    - aiohttp !=4.0.0a0,!=4.0.0a1  # from fsspec(http)
     - s3fs >=2023.4.0
+    - pandas-stubs >=2.0
 
 test:
   # to satisfy the anaconda-linter python imports moved into run_test.py
+  source_files:
+    - astropy/tests/
   requires:
-    - pytest >=7.0,<8
+    - pytest >=7.3.0
     - pytest-astropy >=0.10
-    - pytest-xdist
+    - pytest-xdist >=2.5.0
     - pip
   commands:
     - pip check
@@ -76,6 +88,7 @@ test:
     - volint --help
     - wcslint --help
     - showtable --help
+    - pytest astropy/tests/ -vv -k "not test_logger"
 
 about:
   home: https://www.astropy.org/
