@@ -8,7 +8,8 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: c8f254322295b1b8cf24303d6f155bf7efdb6c1282882b966ce3040eff8c53c5
-
+  patches:
+    - patches/0001-fix-pep621-validation.patch
 
 build:
   number: 0
@@ -30,11 +31,14 @@ requirements:
   build:
     - {{ compiler('c') }}
     - pkg-config
+    - patch  # [not win]
+    - m2-patch  # [win]
   host:
     - pip
     - python
     - wheel
-    - setuptools >=77.0.0
+    # Need to resolve py312-313 conflicts ( pep621 )
+    - setuptools >=72.0.0
     - setuptools_scm >=8.0.0
     - cython >=3.0.0,<4
     - numpy {{ numpy }}
@@ -380,11 +384,6 @@ test:
     - astropy.wcs.wcsapi.wrappers
     - astropy.wcs.wcsapi.wrappers.sliced_wcs
     - astropy_iers_data
-  requires:
-    - pytest >=8.0.0
-    - pytest-astropy >=0.10.0
-    - pytest-xdist >=2.5.0
-    - pip
   commands:
     - pip check
     - fits2bitmap --help
@@ -397,6 +396,11 @@ test:
     - wcslint --help
     - showtable --help
     - pytest --pyargs astropy.tests -vv -k "not test_logger"
+  requires:
+    - pip
+    - pytest >=8.0.0
+    - pytest-astropy >=0.10.0
+    - pytest-xdist >=2.5.0 
 
 about:
   home: https://www.astropy.org
