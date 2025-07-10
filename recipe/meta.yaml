@@ -1,5 +1,5 @@
 {% set name = "astropy" %}
-{% set version = "7.0.0" %}
+{% set version = "7.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e92d7c9fee86eb3df8714e5dd41bbf9f163d343e1a183d95bf6bd09e4313c940
+  sha256: c8f254322295b1b8cf24303d6f155bf7efdb6c1282882b966ce3040eff8c53c5
 
 
 build:
   number: 0
-  skip: true  # [py<311]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - fits2bitmap = astropy.visualization.scripts.fits2bitmap:main
@@ -22,32 +21,46 @@ build:
     - fitsinfo = astropy.io.fits.scripts.fitsinfo:main
     - samp_hub = astropy.samp.hub_script:hub_script
     - showtable = astropy.table.scripts.showtable:main
+    - showtable-astropy = astropy.table.scripts.showtable:main
     - volint = astropy.io.votable.volint:main
     - wcslint = astropy.wcs.wcslint:main
+  skip: true  # [py<311]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - pkg-config
   host:
-    - python
-    - cython >=3.0.0,<3.1.0
-    - extension-helpers >=1,<2
-    - numpy >=2.0.0
     - pip
-    - setuptools
-    - setuptools_scm
+    - python
     - wheel
+    - setuptools >=77.0.0
+    - setuptools_scm >=8.0.0
+    - cython >=3.0.0,<4
+    - numpy {{ numpy }}
+    - extension-helpers >=1,<2
   run:
     - python
     - numpy >=1.23.2
     - pyerfa >=2.0.1.1
-    - astropy-iers-data >=0.2024.10.28.0.34.7
+    - astropy-iers-data >=0.2025.4.28.0.37.27
     - pyyaml >=6.0.0
     - packaging >=22.0.0
+    # optional recomended
     - matplotlib-base >=3.6.0
     - scipy >=1.9.2
   run_constrained:
+    # ipython
+    - ipython >=8.0.0
+    # jupyter
+    - ipywidgets >=7.7.3
+    - ipykernel >=6.16.0
+    - ipydatagrid >=1.1.13
+    # jupyter-core is a transitive dependency via ipykernel, we declare it as
+    # a direct dependency in order to set a lower bound for oldest-deps testing
+    - jupyter-core >=4.11.2
+    #- pandas >=1.5.0
+    # all
     - certifi >=2022.6.15.1
     - dask >=2022.5.1
     - h5py >=3.8.0
@@ -55,7 +68,7 @@ requirements:
     - beautifulsoup4 >=4.9.3
     - html5lib >=1.1
     - bleach >=3.2.1
-    - pandas >=2.0
+    #- pandas >=2.0
     - sortedcontainers >=1.5.7
     - pytz >=2016.10
     - jplephem >=2.6
@@ -66,15 +79,310 @@ requirements:
     - fsspec >=2023.4.0
     - aiohttp !=4.0.0a0,!=4.0.0a1  # from fsspec(http)
     - s3fs >=2023.4.0
+    - uncompresspy >=0.4.0
+    # typing
     - pandas-stubs >=2.0
 
 test:
-  # to satisfy the anaconda-linter python imports moved into run_test.py
   source_files:
-    - astropy/tests/
+    - astropy/tests
+  imports:
+    - astropy
+    - astropy.config
+    - astropy.config.paths
+    - astropy.constants
+    - astropy.constants.si
+    - astropy.convolution
+    - astropy.convolution.convolve
+    - astropy.convolution.kernels
+    - astropy.convolution.utils
+    - astropy.coordinates
+    - astropy.coordinates.angles
+    - astropy.coordinates.angles.core
+    - astropy.coordinates.attributes
+    - astropy.coordinates.baseframe
+    - astropy.coordinates.builtin_frames
+    - astropy.coordinates.builtin_frames.baseradec
+    - astropy.coordinates.builtin_frames.galactic_transforms
+    - astropy.coordinates.builtin_frames.intermediate_rotation_transforms
+    - astropy.coordinates.builtin_frames.utils
+    - astropy.coordinates.distances
+    - astropy.coordinates.earth
+    - astropy.coordinates.erfa_astrom
+    - astropy.coordinates.errors
+    - astropy.coordinates.funcs
+    - astropy.coordinates.matrix_utilities
+    - astropy.coordinates.name_resolve
+    - astropy.coordinates.polarization
+    - astropy.coordinates.representation
+    - astropy.coordinates.representation.geodetic
+    - astropy.coordinates.sites
+    - astropy.coordinates.sky_coordinate
+    - astropy.coordinates.solar_system
+    - astropy.coordinates.spectral_coordinate
+    - astropy.coordinates.spectral_quantity
+    - astropy.coordinates.tests.helper
+    - astropy.coordinates.tests.test_representation
+    - astropy.coordinates.transformations
+    - astropy.coordinates.transformations.affine
+    - astropy.coordinates.transformations.base
+    - astropy.coordinates.transformations.composite
+    - astropy.coordinates.transformations.function
+    - astropy.cosmology
+    - astropy.cosmology._src
+    - astropy.cosmology._src.core
+    - astropy.cosmology._src.flrw.base
+    - astropy.cosmology._src.flrw.lambdacdm
+    - astropy.cosmology._src.funcs.comparison
+    - astropy.cosmology._src.funcs.optimize
+    - astropy.cosmology._src.io.builtin.cosmology
+    - astropy.cosmology._src.io.builtin.ecsv
+    - astropy.cosmology._src.io.builtin.html
+    - astropy.cosmology._src.io.builtin.latex
+    - astropy.cosmology._src.io.builtin.mapping
+    - astropy.cosmology._src.io.builtin.model
+    - astropy.cosmology._src.io.builtin.row
+    - astropy.cosmology._src.io.builtin.table
+    - astropy.cosmology._src.io.builtin.yaml
+    - astropy.cosmology._src.io.connect
+    - astropy.cosmology._src.parameter
+    - astropy.cosmology._src.parameter.converter
+    - astropy.cosmology._src.parameter.core
+    - astropy.cosmology._src.parameter.descriptors
+    - astropy.cosmology._src.tests.helper
+    - astropy.cosmology._src.tests.io
+    - astropy.cosmology._src.tests.io.base
+    - astropy.cosmology._src.tests.io.test_connect
+    - astropy.cosmology._src.tests.test_core
+    - astropy.cosmology._src.traits
+    - astropy.cosmology._src.typing
+    - astropy.cosmology._src.units
+    - astropy.cosmology._src.utils
+    - astropy.cosmology.io
+    - astropy.cosmology.realizations
+    - astropy.cosmology.units
+    - astropy.extern
+    - astropy.extern.configobj
+    - astropy.io
+    - astropy.io.ascii
+    - astropy.io.ascii.core
+    - astropy.io.ascii.ecsv
+    - astropy.io.ascii.fastbasic
+    - astropy.io.ascii.ipac
+    - astropy.io.ascii.qdp
+    - astropy.io.ascii.tdat
+    - astropy.io.ascii.ui
+    - astropy.io.fits
+    - astropy.io.fits.card
+    - astropy.io.fits.column
+    - astropy.io.fits.connect
+    - astropy.io.fits.convenience
+    - astropy.io.fits.diff
+    - astropy.io.fits.file
+    - astropy.io.fits.fitsrec
+    - astropy.io.fits.fitstime
+    - astropy.io.fits.hdu
+    - astropy.io.fits.hdu.base
+    - astropy.io.fits.hdu.compressed
+    - astropy.io.fits.hdu.compressed._codecs
+    - astropy.io.fits.hdu.compressed._compression
+    - astropy.io.fits.hdu.compressed._quantization
+    - astropy.io.fits.hdu.compressed._tiled_compression
+    - astropy.io.fits.hdu.compressed.compbintable
+    - astropy.io.fits.hdu.compressed.utils
+    - astropy.io.fits.hdu.image
+    - astropy.io.fits.hdu.table
+    - astropy.io.fits.header
+    - astropy.io.fits.scripts
+    - astropy.io.fits.tests.conftest
+    - astropy.io.fits.tests.test_checksum
+    - astropy.io.fits.tests.test_table
+    - astropy.io.fits.util
+    - astropy.io.fits.verify
+    - astropy.io.misc
+    - astropy.io.misc.hdf5
+    - astropy.io.misc.pandas
+    - astropy.io.misc.parquet
+    - astropy.io.misc.pyarrow.csv
+    - astropy.io.misc.yaml
+    - astropy.io.registry
+    - astropy.io.registry.base
+    - astropy.io.registry.compat
+    - astropy.io.tests
+    - astropy.io.tests.mixin_columns
+    - astropy.io.votable
+    - astropy.io.votable.dataorigin
+    - astropy.io.votable.exceptions
+    - astropy.io.votable.table
+    - astropy.io.votable.tree
+    - astropy.io.votable.xmlutil
+    - astropy.logger
+    - astropy.modeling
+    - astropy.modeling.bounding_box
+    - astropy.modeling.convolution
+    - astropy.modeling.core
+    - astropy.modeling.fitting
+    - astropy.modeling.functional_models
+    - astropy.modeling.mappings
+    - astropy.modeling.math_functions
+    - astropy.modeling.models
+    - astropy.modeling.optimizers
+    - astropy.modeling.parameters
+    - astropy.modeling.physical_models
+    - astropy.modeling.polynomial
+    - astropy.modeling.powerlaws
+    - astropy.modeling.projections
+    - astropy.modeling.rotations
+    - astropy.modeling.separable
+    - astropy.modeling.spline
+    - astropy.modeling.statistic
+    - astropy.modeling.tabular
+    - astropy.modeling.tests.example_models
+    - astropy.modeling.tests.test_models
+    - astropy.modeling.utils
+    - astropy.nddata
+    - astropy.nddata.ccddata
+    - astropy.nddata.compat
+    - astropy.nddata.decorators
+    - astropy.nddata.nddata
+    - astropy.nddata.nddata_base
+    - astropy.nddata.nduncertainty
+    - astropy.nddata.utils
+    - astropy.samp
+    - astropy.samp.client
+    - astropy.samp.errors
+    - astropy.samp.hub
+    - astropy.samp.hub_proxy
+    - astropy.samp.hub_script
+    - astropy.samp.integrated_client
+    - astropy.samp.utils
+    - astropy.samp.web_profile
+    - astropy.stats
+    - astropy.stats._fast_sigma_clip
+    - astropy.stats.biweight
+    - astropy.stats.circstats
+    - astropy.stats.funcs
+    - astropy.stats.histogram
+    - astropy.stats.info_theory
+    - astropy.stats.jackknife
+    - astropy.stats.nanfunctions
+    - astropy.stats.sigma_clipping
+    - astropy.stats.spatial
+    - astropy.table
+    - astropy.table.bst
+    - astropy.table.column
+    - astropy.table.index
+    - astropy.table.info
+    - astropy.table.mixins.registry
+    - astropy.table.operations
+    - astropy.table.pprint
+    - astropy.table.scripts
+    - astropy.table.serialize
+    - astropy.table.soco
+    - astropy.table.sorted_array
+    - astropy.table.table
+    - astropy.table.table_helpers
+    - astropy.tests.figures
+    - astropy.tests.helper
+    - astropy.tests.runner
+    - astropy.time
+    - astropy.time.core
+    - astropy.time.formats
+    - astropy.time.utils
+    - astropy.timeseries
+    - astropy.timeseries.binned
+    - astropy.timeseries.core
+    - astropy.timeseries.downsample
+    - astropy.timeseries.io.kepler
+    - astropy.timeseries.periodograms
+    - astropy.timeseries.periodograms.base
+    - astropy.timeseries.periodograms.bls
+    - astropy.timeseries.periodograms.lombscargle
+    - astropy.timeseries.periodograms.lombscargle._statistics
+    - astropy.timeseries.periodograms.lombscargle.core
+    - astropy.timeseries.periodograms.lombscargle.implementations
+    - astropy.timeseries.periodograms.lombscargle.implementations.mle
+    - astropy.timeseries.periodograms.lombscargle.implementations.utils
+    - astropy.timeseries.periodograms.lombscargle.utils
+    - astropy.timeseries.periodograms.lombscargle_multiband
+    - astropy.timeseries.sampled
+    - astropy.uncertainty
+    - astropy.uncertainty.core
+    - astropy.units
+    - astropy.units.core
+    - astropy.units.decorators
+    - astropy.units.equivalencies
+    - astropy.units.errors
+    - astropy.units.quantity
+    - astropy.units.quantity_helper.converters
+    - astropy.units.quantity_helper.erfa
+    - astropy.units.quantity_helper.function_helpers
+    - astropy.units.quantity_helper.helpers
+    - astropy.units.required_by_vounit
+    - astropy.units.structured
+    - astropy.units.tests.test_quantity_erfa_ufuncs
+    - astropy.units.tests.test_quantity_non_ufuncs
+    - astropy.units.utils
+    - astropy.utils
+    - astropy.utils.codegen
+    - astropy.utils.collections
+    - astropy.utils.compat
+    - astropy.utils.compat.numpycompat
+    - astropy.utils.compat.optional_deps
+    - astropy.utils.console
+    - astropy.utils.data
+    - astropy.utils.data_info
+    - astropy.utils.decorators
+    - astropy.utils.diff
+    - astropy.utils.exceptions
+    - astropy.utils.iers
+    - astropy.utils.introspection
+    - astropy.utils.masked
+    - astropy.utils.masked.core
+    - astropy.utils.masked.function_helpers
+    - astropy.utils.metadata
+    - astropy.utils.metadata.tests.test_metadata
+    - astropy.utils.misc
+    - astropy.utils.parsing
+    - astropy.utils.shapes
+    - astropy.utils.state
+    - astropy.utils.system_info
+    - astropy.utils.xml
+    - astropy.utils.xml.iterparser
+    - astropy.utils.xml.writer
+    - astropy.visualization
+    - astropy.visualization.interval
+    - astropy.visualization.mpl_normalize
+    - astropy.visualization.stretch
+    - astropy.visualization.time
+    - astropy.visualization.units
+    - astropy.visualization.wcsaxes
+    - astropy.visualization.wcsaxes.coordinate_helpers
+    - astropy.visualization.wcsaxes.core
+    - astropy.visualization.wcsaxes.formatter_locator
+    - astropy.visualization.wcsaxes.frame
+    - astropy.visualization.wcsaxes.grid_paths
+    - astropy.visualization.wcsaxes.patches
+    - astropy.visualization.wcsaxes.ticklabels
+    - astropy.visualization.wcsaxes.transforms
+    - astropy.visualization.wcsaxes.utils
+    - astropy.visualization.wcsaxes.wcsapi
+    - astropy.wcs
+    - astropy.wcs._wcs
+    - astropy.wcs.utils
+    - astropy.wcs.wcs
+    - astropy.wcs.wcsapi
+    - astropy.wcs.wcsapi.fitswcs
+    - astropy.wcs.wcsapi.high_level_api
+    - astropy.wcs.wcsapi.high_level_wcs_wrapper
+    - astropy.wcs.wcsapi.low_level_api
+    - astropy.wcs.wcsapi.utils
+    - astropy.wcs.wcsapi.wrappers
+    - astropy.wcs.wcsapi.wrappers.sliced_wcs
+    - astropy_iers_data
   requires:
-    - pytest >=7.3.0
-    - pytest-astropy >=0.10
+    - pytest >=8.0.0
+    - pytest-astropy >=0.10.0
     - pytest-xdist >=2.5.0
     - pip
   commands:
@@ -88,10 +396,10 @@ test:
     - volint --help
     - wcslint --help
     - showtable --help
-    - pytest astropy/tests/ -vv -k "not test_logger"
+    - pytest --pyargs astropy.tests -vv -k "not test_logger"
 
 about:
-  home: https://www.astropy.org/
+  home: https://www.astropy.org
   license: BSD-3-Clause
   license_file: LICENSE.rst
   license_family: BSD
@@ -100,7 +408,7 @@ about:
     The Astropy Project is a community effort to develop a single package for
     Astronomy in Python. It contains core functionality and common tools
     needed for performing astronomy and astrophysics research with Python.
-  doc_url: https://docs.astropy.org/en/stable/
+  doc_url: https://docs.astropy.org/en/stable
   dev_url: https://github.com/astropy/astropy
 
 extra:
