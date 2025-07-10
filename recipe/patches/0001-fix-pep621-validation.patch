@@ -1,0 +1,36 @@
+From e4ad1201d6537f897543303c4138aa11e77bfd0c Mon Sep 17 00:00:00 2001
+From: Andrii Osipov <aosipov@anaconda.com>
+Date: Thu, 10 Jul 2025 02:03:37 -0700
+Subject: [PATCH] fix pep621 validation
+
+---
+ pyproject.toml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/pyproject.toml b/pyproject.toml
+index f0b6401..20c84c7 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -8,8 +8,9 @@ readme = "README.rst"
+ authors = [
+     { name = "The Astropy Developers", email = "astropy.team@gmail.com" }
+ ]
+-license = "BSD-3-Clause"
+-license-files = ["LICENSE.rst", "licenses/*.rst"]
++license = {text = "BSD-3-Clause"}
++
++
+ requires-python = ">=3.11"
+ classifiers = [
+     "Intended Audience :: Science/Research",
+@@ -173,6 +174,7 @@ build-backend = "setuptools.build_meta"
+ 
+ [tool.setuptools]
+ include-package-data = true
++license-files = ["LICENSE.rst", "licenses/*.rst"]
+ 
+ [tool.setuptools.packages.find]
+ include = ["astropy*"]
+-- 
+2.39.3 (Apple Git-146)
+
