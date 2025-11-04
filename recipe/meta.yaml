@@ -1,13 +1,13 @@
 {% set name = "astropy" %}
-{% set version = "7.1.0" %}
+{% set version = "7.1.1" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c8f254322295b1b8cf24303d6f155bf7efdb6c1282882b966ce3040eff8c53c5
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 6d128f0005e2c34f70113484468bf9d0e4ca1ee15a279cfd08bdd979d38db0f8
   patches:
     - patches/0001-fix-pep621-validation.patch
 
@@ -36,23 +36,25 @@ requirements:
   host:
     - pip
     - python
-    - wheel
     # Need to resolve py312-313 conflicts ( pep621 )
-    - setuptools >=72.0.0
+    - setuptools >=77.0.0
     - setuptools_scm >=8.0.0
     - cython >=3.0.0,<4
     - numpy {{ numpy }}
     - extension-helpers >=1,<2
+    - setuptools-scm >=8.0.0
+    - numpy >=2.0.0,<3
   run:
     - python
     - numpy >=1.23.2
     - pyerfa >=2.0.1.1
-    - astropy-iers-data >=0.2025.4.28.0.37.27
+    - astropy-iers-data >=0.2025.9.29.0.35.48
     - pyyaml >=6.0.0
     - packaging >=22.0.0
     # optional recomended
     - matplotlib-base >=3.6.0
     - scipy >=1.9.2
+    - {{ pin_compatible('numpy') }}
   run_constrained:
     # ipython
     - ipython >=8.0.0
@@ -86,6 +88,10 @@ requirements:
     - uncompresspy >=0.4.0
     # typing
     - pandas-stubs >=2.0
+    - dask-core >=2022.5.1
+    - pandas >=1.5.0
+    - scipy >=1.9.2
+    - matplotlib-base >=3.6.0
 
 test:
   source_files:
@@ -400,7 +406,7 @@ test:
     - pip
     - pytest >=8.0.0
     - pytest-astropy >=0.10.0
-    - pytest-xdist >=2.5.0 
+    - pytest-xdist >=2.5.0
 
 about:
   home: https://www.astropy.org
