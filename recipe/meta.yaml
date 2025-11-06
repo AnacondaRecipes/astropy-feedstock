@@ -1,5 +1,5 @@
 {% set name = "astropy" %}
-{% set version = "7.1.0" %}
+{% set version = "7.1.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,13 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c8f254322295b1b8cf24303d6f155bf7efdb6c1282882b966ce3040eff8c53c5
+  sha256: 6d128f0005e2c34f70113484468bf9d0e4ca1ee15a279cfd08bdd979d38db0f8
   patches:
     - patches/0001-fix-pep621-validation.patch
 
 build:
   number: 0
+  skip: true  # [py<311]
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
   entry_points:
     - fits2bitmap = astropy.visualization.scripts.fits2bitmap:main
@@ -25,14 +26,12 @@ build:
     - showtable-astropy = astropy.table.scripts.showtable:main
     - volint = astropy.io.votable.volint:main
     - wcslint = astropy.wcs.wcslint:main
-  skip: true  # [py<311]
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - pkg-config
-    - patch  # [not win]
-    - msys2-patch  # [win]
   host:
     - pip
     - python
