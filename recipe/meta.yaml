@@ -1,5 +1,5 @@
 {% set name = "astropy" %}
-{% set version = "7.2.0" %}
+{% set version = "8.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: ae48bc26b1feaeb603cd94bd1fa1aa39137a115fe931b7f13787ab420e8c3070
+  sha256: 7f4de5db41f26f140433eddd78458abfc1c19b8037f9f8a89c33853cfba1fdc3
 
 build:
   number: 0
@@ -396,7 +396,7 @@ test:
     - pip
     - pytest >=8.0.0
     - pytest-astropy >=0.10.0
-    - pytest-xdist >=2.5.0 
+    - pytest-xdist >=2.5.0
 
 about:
   home: https://www.astropy.org
