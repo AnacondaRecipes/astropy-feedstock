@@ -1,13 +1,13 @@
 {% set name = "astropy" %}
-{% set version = "7.2.0" %}
+{% set version = "8.0.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: ae48bc26b1feaeb603cd94bd1fa1aa39137a115fe931b7f13787ab420e8c3070
+  sha256: 7f4de5db41f26f140433eddd78458abfc1c19b8037f9f8a89c33853cfba1fdc3
 
 build:
   number: 0
@@ -39,17 +39,17 @@ requirements:
     - cython >=3.0.0,<4
     - numpy {{ numpy }}
     - extension-helpers >=1,<2
-    - pyerfa >=2.0.1.1
+    - pyerfa >=2.0.1.3
   run:
     - python
-    - numpy >=1.24
-    - pyerfa >=2.0.1.1
-    - astropy-iers-data >=0.2025.10.27.0.39.10
-    - pyyaml >=6.0.0
+    - numpy >=2.0
+    - astropy-iers-data >=0.2026.6.1.17.39.59
     - packaging >=22.0.0
+    - pyerfa >=2.0.1.3
+    - pyyaml >=6.0.0
     # optional recomended
-    - matplotlib-base >=3.6.0
-    - scipy >=1.9.2
+    - scipy >=1.13
+    - matplotlib-base >=3.8.4
     - narwhals >=1.42.0
   run_constrained:
     # ipython
@@ -61,27 +61,29 @@ requirements:
     # jupyter-core is a transitive dependency via ipykernel, we declare it as
     # a direct dependency in order to set a lower bound for oldest-deps testing
     - jupyter-core >=4.11.2
-    #- pandas >=2.0.0
+    #- pandas >=2.2.2
     # all
     - certifi >=2022.6.15.1
     - dask >=2024.8.0
     - h5py >=3.9.0
-    - pyarrow >=14.0.2
-    - beautifulsoup4 >=4.9.3
+    - pyarrow >=16.0
+    - beautifulsoup4 >=4.11.2
     - html5lib >=1.1
     - bleach >=3.2.1
     - sortedcontainers >=2.1.0
     - pytz >=2016.10
     - jplephem >=2.17.0
     - mpmath >=1.2.1
-    - asdf-astropy >=0.3
-    - bottleneck >=1.3.3
+    - asdf-astropy >=0.7.0
+    - bottleneck >=1.4.0
     - fsspec >=2023.4.0
     - aiohttp !=4.0.0a0,!=4.0.0a1  # from fsspec(http)
     - s3fs >=2023.4.0
     - uncompresspy >=0.4.0
     # typing
-    - pandas-stubs >=2.0
+    - pandas-stubs >=2.0.2
+    - scipy-stubs >=1.14.1.6
+    - narwhals >=1.42.0
 
 test:
   source_files:
