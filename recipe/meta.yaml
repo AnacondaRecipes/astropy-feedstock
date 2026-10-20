@@ -1,5 +1,5 @@
 {% set name = "astropy" %}
-{% set version = "8.0.0" %}
+{% set version = "8.0.2" %}
 
 package:
   name: {{ name }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 7f4de5db41f26f140433eddd78458abfc1c19b8037f9f8a89c33853cfba1fdc3
+  sha256: e6af35823099ad6a40b57dbe5ff845f577374ea131925c9fa4b49eeab06c5310
 
 build:
   number: 0
@@ -33,24 +33,26 @@ requirements:
   host:
     - pip
     - python
-    - wheel
     - setuptools >=77.0.0
     - setuptools_scm >=8.0.0
     - cython >=3.0.0,<4
     - numpy {{ numpy }}
-    - extension-helpers >=1,<2
+    - extension-helpers >=1.4,<2
     - pyerfa >=2.0.1.3
+    - setuptools-scm >=8.0.0
+    - numpy >=2.0.0,<3
   run:
     - python
     - numpy >=2.0
-    - astropy-iers-data >=0.2026.6.1.17.39.59
-    - packaging >=22.0.0
+    - astropy-iers-data >=0.2026.9.28.0.59.37
+    - packaging >=25.0
     - pyerfa >=2.0.1.3
     - pyyaml >=6.0.0
     # optional recomended
     - scipy >=1.13
     - matplotlib-base >=3.8.4
     - narwhals >=1.42.0
+    - {{ pin_compatible('numpy') }}
   run_constrained:
     # ipython
     - ipython >=8.0.0
@@ -65,7 +67,7 @@ requirements:
     # all
     - certifi >=2022.6.15.1
     - dask >=2024.8.0
-    - h5py >=3.9.0
+    - h5py >=3.11.0
     - pyarrow >=16.0
     - beautifulsoup4 >=4.11.2
     - html5lib >=1.1
@@ -84,6 +86,10 @@ requirements:
     - pandas-stubs >=2.0.2
     - scipy-stubs >=1.14.1.6
     - narwhals >=1.42.0
+    - dask-core >=2024.8.0
+    - pandas >=2.2.2
+    - scipy >=1.13
+    - matplotlib-base >=3.8.4
 
 test:
   source_files:
@@ -398,7 +404,7 @@ test:
     - pip
     - pytest >=8.0.0
     - pytest-astropy >=0.10.0
-    - pytest-xdist >=2.5.0 
+    - pytest-xdist >=2.5.0
 
 about:
   home: https://www.astropy.org
